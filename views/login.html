@@ -1,0 +1,83 @@
+{%extends './layout.html'%} 
+
+{%block content%}
+<div class="container" id="login-page-container" style="    margin-top: 80px;">
+    <div class="row">
+        <div class="col-md-1 hidden-sm hidden-xs"></div>
+        <div class="col-md-5 col-sm-7 hidden-xs login-left-column">
+            <div class="login-left-image">
+                <!-- /%a= image_tag('login_in_05.png') -->
+                <!-- /%a= image_tag('shuxin.jpg') -->
+                <a>
+                    <!-- <img alt="Login left20161103" src="/assets/login-left20161103-b7f88473f763c2ef1d0892508a49f3f1.jpg"> -->
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-5">
+            <div class="login-text">
+                <!-- /%h3.login-header #{header_text} -->
+                <div class="login-div">
+                    <span class="user-container" id="user-login-container">
+                        <span class="login-header left_title current">账号密码登录</span>
+
+                        <!-- <span class="login-header right_title">手机号快捷登录</span> -->
+                    </span>
+                </div>
+                <span style="color:red">{{error}}</span>
+                <span    >请联系电话  <a href="tel:15920589594">15920589594</a> 杨卓</span>
+                <form accept-charset="UTF-8" action="/fruit/signin" method="POST" class="new_user username-login-container" id="new_user" method="post">
+                    <div style="display:none">
+                        <input name="utf8" type="hidden" value="✓">
+                        <input name="authenticity_token" type="hidden" value="38nor2qECU1f9Cx2ebxzXIv9OS2TTO23t8hm+Yo8bRw=">
+                    </div>
+                    <input id="wx_union_id" name="wx_union_id" type="hidden">
+                    <div class="login-div">
+                        <input autofocus="autofocus" class="login-input form-input" id="phone" name="phone" placeholder="输入注册邮箱／手机号" tabindex="1"
+                            type="text">
+                    </div>
+                    <div class="login-div">
+                        <input autocomplete="off" class="login-input form-input" id="user_password" name="password" placeholder="登录密码" tabindex="1"
+                            type="password">
+                    </div>
+                    <div class="login-div">
+                        <input name="user[remember_me]" type="hidden" value="0">
+                        <input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1">
+                        <label>保持登录状态</label>
+                        <!-- <a class="login-link-color" href="/users/password/new" style="float: right">忘记密码</a> -->
+                    </div>
+                    <div>
+                        <input id="login-button" tabindex="1" type="submit" value="登录">
+                        <!-- <a class="btn sign-up-button" href="/users/sign_up">注册</a> -->
+                    </div>
+                </form>
+
+                <div class="login-div phonenumber-login-container">
+                    <div data-react-class="PhoneSign" data-react-props="{&quot;redirect_url&quot;:&quot;http://www.pantrysbest.com/&quot;,&quot;source&quot;:&quot;fast_login&quot;,&quot;button_name&quot;:&quot;登录&quot;}">
+                        <div class="phone-container" data-reactid=".0">
+                            <div class="login-div col-xs-12 pantry-padding-0px" data-reactid=".0.0">
+                                <input id="phone_number" class="form-input" name="phone_number" placeholder="手机号" data-reactid=".0.0.0">
+                            </div>
+                            <div class="login-div col-xs-12 pantry-padding-0px" data-reactid=".0.2">
+                                <input id="code" class="form-input" name="code" placeholder="验证码" data-reactid=".0.2.0">
+                            </div>
+                            <a class="send_verify_code btn btn-default col-xs-12" data-reactid=".0.4">获取短信验证码</a>
+                            <a class="send_verify_code btn btn-default col-xs-12" data-reactid=".0.5">获取语音验证码</a>
+                            <div class="login-div col-xs-12 pantry-padding-0px" data-reactid=".0.7">
+                                <a class="weixin_signup btn btn-primary disabled col-xs-12" data-reactid=".0.7.0">登录</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div id="weixin-login-container"> -->
+                <!-- <iframe src="https://open.weixin.qq.com/connect/qrconnect?appid=wxfe909cb8d69c8c4f&amp;scope=snsapi_login&amp;redirect_uri=http://pantrysbest.com/wx_login&amp;state=oJc1DB0D3tO8wZBe1L0LsA==&amp;login_type=jssdk&amp;self_redirect=default&amp;style=black" -->
+                <!-- frameborder="0" scrolling="no" width="300px" height="400px"></iframe> -->
+                <!-- </div> -->
+                <script>
+                    Pantrysbest.Weixin.JsLogin.init("wxfe909cb8d69c8c4f", "oJc1DB0D3tO8wZBe1L0LsA==")
+                </script>
+            </div>
+        </div>
+        <div class="col-md-2 hidden-sm hidden-xs"></div>
+    </div>
+</div>
+{%endblock%}

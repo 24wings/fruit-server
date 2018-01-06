@@ -1,0 +1,47 @@
+{
+    "name": "H5V.1",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node dist/www.js",
+        "dev": "gulp"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@types/koa": "^2.0.42",
+        "@types/koa-bodyparser": "^3.0.26",
+        "@types/koa-router": "^7.0.27",
+        "@types/koa-session": "^3.0.6",
+        "@types/koa-static": "^3.0.2",
+        "@types/koa-views": "^2.0.3",
+        "@types/mongoose": "^4.7.28",
+        "@types/node": "^8.0.57",
+        "@types/qr-image": "^3.2.1",
+        "@types/request": "^2.0.8",
+        "cloudinary": "^1.9.1",
+        "excel-export": "^0.5.1",
+        "koa": "^2.4.1",
+        "koa-bodyparser": "^4.2.0",
+        "koa-handle-error": "0.0.5",
+        "koa-router": "^7.3.0",
+        "koa-session": "^5.5.1",
+        "koa-static": "^4.0.2",
+        "koa-views": "^6.1.3",
+        "mongoose": "^4.13.6",
+        "qr-image": "^3.2.0",
+        "request": "^2.83.0",
+        "swig": "^1.4.2",
+        "urlencode": "^1.1.0",
+        "wechat-api": "^1.35.1"
+    },
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-nodemon": "^2.2.1",
+        "gulp-typescript": "^3.2.3",
+        "typescript": "^2.6.2"
+    }
+}

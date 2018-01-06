@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var qqai_route_1 = require("./qqai.route");
+exports.qqaiRoute = qqai_route_1.qqaiRoute;
+var wechat_route_1 = require("./wechat.route");
+exports.wechatRouter = wechat_route_1.wechatRouter;
+var common_route_1 = require("./common.route");
+exports.commonRouter = common_route_1.commonRouter;
+var admin_route_1 = require("./admin.route");
+exports.adminRouter = admin_route_1.adminRouter;
+var fruit_route_1 = require("./fruit.route");
+exports.fruitRouter = fruit_route_1.fruitRouter;
+var fruit_client_route_1 = require("./fruit-client.route");
+exports.fruitClientRouter = fruit_client_route_1.fruitClientRouter;

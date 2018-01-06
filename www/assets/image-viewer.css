@@ -1,0 +1,119 @@
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 200ms;
+}
+
+.img-box {
+  -webkit-box-pack: center;
+  -webkit-align-items: center;
+  -moz-box-sizing: border-box;
+  -webkit-justify-content: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  -ms-flex-pack: center;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0px;
+  width: 100%;
+  z-index: 2001;
+  align-items: center;
+  box-sizing: border-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0px;
+  position: fixed;
+}
+
+.cover {
+  -webkit-box-pack: center;
+  -webkit-align-items: center;
+  -moz-box-sizing: border-box;
+  -webkit-justify-content: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  -ms-flex-pack: center;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0px;
+  width: 100%;
+  z-index: 2001;
+  align-items: center;
+  box-sizing: border-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0px;
+  position: fixed;
+}
+
+.viewer-close {
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  -webkit-box-pack: justify;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  height: 25px;
+  line-height: 40px;
+  vertical-align: middle;
+  justify-content: flex-end;
+  margin-right: 14px;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.viewer-pagenum {
+  -webkit-box-pack: justify;
+  -moz-box-sizing: border-box;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  left: 0px;
+  line-height: 1.3;
+  color: white;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 5px;
+  box-sizing: border-box;
+  cursor: auto;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding-bottom: 5px;
+  justify-content: flex-end;
+  margin-right: 13px;
+  margin-top: 6px;
+}

@@ -1,0 +1,190 @@
+<div data='pantry_1514021245' id='pantry_code'></div>
+<div data='null' id='user-data'></div>
+<div data='zh' id='locale-name-data' style='display: none'></div>
+<div data='https://www.pantrysbest.com' id='server-url-data' style='display: none'></div>
+<div data='pop_city' id='is-show-popcity-data' style='display: none'></div>
+<div data='{"id":21386358,"created_at":"2017-12-23T17:25:59.863Z","updated_at":"2017-12-23T17:25:59.863Z","item_ids":[],"productsTotal":0.0,"utensilsTotal":0,"earliestDeliveryDate":null,"undeliverDate":{"1":[],"2":[],"3":[],"4":[]}}'
+    id='shopping-cart-data'></div>
+<div data='{"id":1,"chinese_name":"北京"}' id='city-data'></div>
+<div data='2015/03/14 15:09:00' id='activity-start-at'></div>
+<div data='2015/04/02' id='activity-20150402-start'></div>
+<div data='2015/04/10' id='activity-20150402-end'></div>
+<div data='2015/07/07' id='activity-20150710-start'></div>
+<div data='2015/07/20' id='activity-20150710-end'></div>
+<div class='hidden-xs navbar navbar-default navbar-fixed-top navbar-static-top' role='navigation'>
+    <div class='container' style='padding-right: 0px;padding-left: 0px;'>
+        <div class='navbar-header'>
+            <div class='navbar-brand'>
+                <a href='/'>
+                    <img style="min-width: 205px;" />
+                </a>
+                <!-- /%a{href: "/"}= image_tag('logo-normal.png', style: "min-width: 205px;") -->
+            </div>
+        </div>
+        <ul class='nav navbar-nav'>
+            <li class='v2_locale_icon'>
+                <!-- <a class='pc-locale-icon' href='/apis/set_current_locale?locale_name=en'>English</a> -->
+            </li>
+            <li class='dropdown'>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+
+                    <!-- <span class='caret'></span> -->
+                </a>
+
+            </li>
+        </ul>
+        <ul class='nav navbar-nav middle-nav-ul hidden-xs'>
+            <li class='middle-nav-ul-li' onclick="location.href='/'" style="    cursor: pointer;">
+              首页  &nbsp;&nbsp;&nbsp; |
+            </li>
+            <li class='dropdown'>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                    产品列表
+                    <span class='caret'></span>
+                </a>
+                <ul class='dropdown-menu' role='menu'>
+                    {% for category in categorys%}
+                    <li>
+                        <a href='/category/{{category._id+' '}}'>{{category.name}}</a>
+                    </li>
+                    {%endfor%}
+
+                </ul>
+            </li>
+            <li class='middle-nav-ul-li'>
+                |
+            </li>
+            <li>
+                <a class='navbar-font-color' href='/user/{{user._id+''}}/order'>我的订单</a>
+            </li>
+            <li class='middle-nav-ul-li'>
+                |
+            </li>
+           
+          
+        </ul>
+        <ul class='nav navbar-nav navbar-right pc-navbar-right hidden-xs'>
+            {%if !!user %}
+            <li>
+                <a>{{user.nickname}}</a>
+            </li>
+            <li style="margin-left:20px;">
+                <a href="/logout">登出</a>
+            </li>
+
+
+            {% else %}
+            <li id="sign-in-item">
+                <a href='/login'>登录</a>
+            </li>
+
+            {% endif %}
+
+
+        </ul>
+    </div>
+</div>
+
+
+<div class='navbar navbar-default navbar-static-top navbar-fixed-top visible-xs mobile-header-nav' role='navigation'>
+    <div class='container' id='mobile-header-nav'>
+        <div class='navbar-header'>
+            <span id='toggle-mobile-dropdown-nav' style='width: 13%;text-align: left;'>
+                <span class='fa fa-bars has-right-icon'>
+                    <div class='fa fa-circle red_right_icon red_nav_event'></div>
+                </span>
+            </span>
+            <div class='navbar-brand' style='width: 74%;text-align: center;padding-left: 5px;padding-right: 5px;'>
+                <a href='/'>
+                    <img />
+                </a>
+                <!-- /%a{href: "/"}= image_tag('logo-mnormal.png') -->
+                <!-- <a class='mb-locale-icon' href='/apis/set_current_locale?locale_name=en'>English</a> -->
+            </div>
+            <a class='toggle-mobile-telephone-nav visible-xs' href='tel:4008314159' style='width: 13%;text-align: right;'>
+                <i class='fa fa-phone pantry-green-font'></i>
+            </a>
+        </div>
+        <div class='container nav navbar-nav navbar-right' id='mobile-navbar-right'>
+            <!-- <a class='col-xs-12 nav-list-city'>当前城市：北京</a> -->
+            <a class='col-xs-4 nav-list-content' id='show-city-select-pop'>
+                <img alt="Marker nav" src="https://www.pantrysbest.com/assets/nav/marker-nav-3a36f554aaea8089224ede8e028ba4f0.png" />
+                <!-- <div>切换城市</div> -->
+            </a>
+            <a class='col-xs-4 nav-list-content' href='/crm'>
+                <img alt="User nav" src="https://www.pantrysbest.com/assets/nav/user-nav-5f97c653a53d21ff4afa2e0c1ea180ec.png" />
+                <div>个人中心</div>
+            </a>
+            <a class='col-xs-4 nav-list-content' href='/cities/beijing/categories/christmas-specials'>
+                <img alt="Cake nav" src="https://www.pantrysbest.com/assets/nav/cake-nav-9e75ddec38a8e4ae4bb8e8087a86431f.png" />
+                <div>产品列表</div>
+            </a>
+            <a class='col-xs-4 nav-list-content' href='/pages/huiyuan'>
+                <img alt="Note nav" src="https://www.pantrysbest.com/assets/nav/note-nav-48b342e1312e1abfa776bd7c1bb70979.png" />
+                <div>关于</div>
+            </a>
+            <a class='col-xs-4 nav-list-content' href='/events'>
+                <span class='has-right-icon'>
+                    <img alt="Event nav" src="https://www.pantrysbest.com/assets/nav/event-nav-6f999683855a06ac92a9b6aa7b6fa0b8.png" />
+                    <div class='fa fa-circle red_right_icon red_nav_event'></div>
+                </span>
+                <div>活动</div>
+            </a>
+            <a class='col-xs-4 nav-list-content' href='/shop'>
+                <img alt="Point nav" src="https://www.pantrysbest.com/assets/nav/point-nav-e83209c472251bfdfc33ef1f06e55b82.png" />
+                <div>积分商城</div>
+            </a>
+        </div>
+    </div>
+    <div class='container pantry-height-5px'></div>
+    <a href='/'>
+        <div class='col-xs-2 mobile-nav-index div-20-width'>
+            <div class='col-xs-12 no-padding'>
+                <div class='nav-sup-new'>
+                    <img alt="Home current" class="nav-icon" src="https://www.pantrysbest.com/assets/nav/home-current-92b57084685a6cf178f40a522e4d076b.png"
+                    />
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href='/cities/beijing/categories/christmas-specials'>
+        <div class='col-xs-2 mobile-nav-index div-20-width'>
+            <div class='col-xs-12 no-padding'>
+                <div class='nav-sup-new'>
+                    <img alt="Cake" class="nav-icon" src="https://www.pantrysbest.com/assets/nav/cake-f584ee933050cc29a5aa851816611d2d.png" />
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href='/crm'>
+        <div class='col-xs-2 mobile-nav-index div-20-width'>
+            <div class='col-xs-12 no-padding'>
+                <div class='nav-sup-new'>
+                    <img alt="User" class="nav-icon v2-nav-icon" src="https://www.pantrysbest.com/assets/nav/user-06354e773e77095cc296c46f5a744ba2.png"
+                    />
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href='/wedding'>
+        <div class='col-xs-2 mobile-nav-index div-20-width'>
+            <div class='col-xs-12 no-padding'>
+                <div class='nav-sup-new'>
+                    <img alt="Sell" class="nav-icon v2-nav-icon" src="https://www.pantrysbest.com/assets/nav/sell-8c0ce55e8475f125033989769f9ef369.png"
+                    />
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href='/shopping-cart'>
+        <div class='col-xs-2 mobile-nav-index div-20-width'>
+            <div class='col-xs-12 no-padding'>
+                <div class='nav-sup-new'>
+                    <img alt="Cart" class="nav-icon v2-nav-icon" src="https://www.pantrysbest.com/assets/nav/cart-8c2932d2923fcc89bf4170680752098c.png"
+                    />
+                </div>
+            </div>
+        </div>
+    </a>
+
+</div>

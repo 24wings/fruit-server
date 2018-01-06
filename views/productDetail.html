@@ -1,0 +1,136 @@
+{%extends './layout.html'%} {%block content%}
+<div id="product-set-container" style="margin-top:60px;">
+    <div class="container">
+        <div class="row">
+            {%include './mixin/category-list.html' %}
+            <h2 style="color:lightgreen">{{success}}  到 <a href="/user/{{user._id+''}}/order" > 我的订单</a>进行确认吧</h2>
+            <div class='col-md-10 col-sm-9 product-set-container-column'>
+                <!-- /wangting--这个地方判断产品如果是黑森林，就让超链接到活动界面 -->
+                <!-- <img alt="%e8%af%a6%e6%83%85%e5%9b%be %282%29" class="fly_img" src="{{product.images[0].url}}" /> -->
+                <div class='hidden-xs'>
+                    <div class='swiper-container gallery-top' style='margin-bottom: 15pt'>
+                        <div class='swiper-wrapper'>
+
+                            <img alt="{{product.name}}" class="swiper-slide img-responsive" src="{{product.images[0].url}}" id="showImage" />
+
+                        </div>
+                    </div>
+                    <div class='swiper-container gallery-thumbs'>
+                        <div class='swiper-wrapper row' id="selectImages">
+                            {%for img in product.images%}
+
+
+
+                            <img alt="{{product.name}}" style="width:20%;opacity:1;" class="swiper-slide img-responsive" src="{{img.url}}" /> {%endfor%}
+
+                        </div>
+                    </div>
+                </div>
+                <div class='hidden-md hidden-sm hidden-lg'>
+                    <div class='swiper-container mobile-slideshows-swiper'>
+                        <div class='swiper-wrapper'>
+                            <div class='swiper-slide'>
+                                {%for img in product.images%}
+                                <img alt="{{product.name}}" class="img-responsive" src="{{img.url}}" /> {%endfor%}
+                            </div>
+
+                        </div>
+                        <div class='swiper-pagination mobile-swiper-pagination'></div>
+                    </div>
+                </div>
+                <div class='detailed-product-set-info-container'>
+                    <div class='row'>
+                        <div class='col-md-7'>
+                            <h3>{{product.name}}</h3>
+                            <div class='long-description'>
+                                <!-- <p>想要多一点选择、再多一点选择？一盒6种口味迷你纸杯蛋糕，一次给你6种经典口味！小巧可人的身材、眼花缭乱的搭配，为你的聚会增香添色！</p> -->
+
+                            </div>
+                            <div class='ingredients'>
+                                <!-- <div class='ingredients-header'>口味亮点</div> -->
+                                <div class='ingredients-description'>
+                                    <!-- 可可粉、奶油奶酪、黄油、乳脂奶油、砂糖、糖粉、面粉、鸡蛋、柠檬、香蕉、牛奶、核桃、蜂蜜、肉桂、黑巧克力、榛子、天然薄荷精、薄荷酒 -->
+                                </div>
+                            </div>
+                            <!-- <div class='row sweetness_content visible-xs'>
+                                <span class='sweet_btn'>甜度值</span>
+                                <img alt="S img1" src="/assets/s_img1-8591701fb8d1536f0bacb1b8b909b620.png" />
+                                <img alt="S img1" src="/assets/s_img1-8591701fb8d1536f0bacb1b8b909b620.png" />
+                                <img alt="S img1" src="/assets/s_img1-8591701fb8d1536f0bacb1b8b909b620.png" />
+                                <img alt="S img2" src="/assets/s_img2-43509ea2b3ac0eefe3b81e8e542c5c2c.png" />
+                                <img alt="S img3" src="/assets/s_img3-56b94cd2c924d4d5fd1f71a4182feb4e.png" />
+                            </div> -->
+
+                        </div>
+                        <div class="col-md-5 product-offerings" data-reactid=".0">
+                            <form action="/order" method="POST">
+                                <div class="product-sizes" data-reactid=".0.0">
+                                    <!-- <span class="selected size-selection" data-reactid=".0.0.0">礼盒</span> -->
+                                </div>
+                                <div class="product-count" data-reactid=".0.2">
+                                    <div class="product-count-container" data-reactid=".0.2.0">
+                                        <!-- <span id="product-price" data-reactid=".0.2.0.0">¥0</span> -->
+                                        <span onclick="$('#product-count').val( ~~$('#product-count').val() <=0? 0: ~~$('#product-count').val()-1)">
+                                            <i class="icon-min iconfont" data-reactid=".0.2.0.1"></i>
+                                        </span>
+                                        <input type="text" id="userId" name="userId" value="{{user._id+''}}" hidden>
+                                        <input type="text" id="productId" name="productId" value="{{product._id+''}}" style="display:none">
+                                        <input id="product-count" name="productCount" class="product-count" type="number" value="{%if num %}{{num}}{%else %}1{%endif%}" data-reactid=".0.2.0.2">
+                                        <span onclick="$('#product-count').val(~~$('#product-count').val()+1)">
+                                            <i class="icon-plus iconfont" data-reactid=".0.2.0.3"></i>
+                                        </span>
+                                    </div>
+                                    <div id="action-buttons" data-reactid=".0.2.1">
+                                        <button id="buy-now-button" data-reactid=".0.2.1.0" type="submit">立即下单</button>
+                                        <!-- <div id="add-to-cart-button" data-reactid=".0.2.1.1"> -->
+                                        <!-- <span class="fa fa-shopping-cart" data-reactid=".0.2.1.1.0"></span> -->
+                                        <!-- <span data-reactid=".0.2.1.1.1">加入购物车</span> -->
+                                        <!-- </div> -->
+                                    </div>
+                                    <div id="action-completed-status" data-reactid=".0.2.2"></div>
+                                    <div data-reactid=".0.2.4"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- <div class='hidden-xs row sweetness_content'>
+                        <span class='sweet_btn'>甜度值</span>
+                        <img alt="S img1" src="/assets/s_img1-8591701fb8d1536f0bacb1b8b909b620.png" />
+                        <img alt="S img1" src="/assets/s_img1-8591701fb8d1536f0bacb1b8b909b620.png" />
+                        <img alt="S img1" src="/assets/s_img1-8591701fb8d1536f0bacb1b8b909b620.png" />
+                        <img alt="S img2" src="/assets/s_img2-43509ea2b3ac0eefe3b81e8e542c5c2c.png" />
+                        <img alt="S img3" src="/assets/s_img3-56b94cd2c924d4d5fd1f71a4182feb4e.png" />
+                    </div> -->
+
+                    <div class='divider'>&nbsp;</div>
+                    <div class='more-detailed-info'>
+                        <div class='bold-header'>
+                            <!-- 温馨提示 -->
+                        </div>
+                        <!-- <div class='wenxintishi'>
+                            1、蛋糕收到后在2-3小时食用最佳, 纸杯蛋糕收到后在1小时食用最佳，如果食用不完请冷藏保存（冰激凌蛋糕请冷冻保存），在24小时内食用完毕
+                            <br> 2、如对上述食材有过敏经历者请选择其它款蛋糕
+                        </div> -->
+                    </div>
+                    <br>
+                    <table class='cake-size-table'>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a class='shopping-cart-info-content navbar navbar-fixed-bottom visible-xs' href='#'>
+    <div class='col-xs-7 mobile-cart-info' style='margin-top:10px;'>
+        <span class='fa fa-shopping-cart'></span>
+    </div>
+    <div class='col-xs-5 goto-cart-button'>去结算</div>
+</a>
+</div>
+</div>
+<script>
+    $('#selectImages').children('img').mouseenter(function () {
+        let src = $(this).attr('src');
+        $('#showImage').attr('src', src).css('opacity',1);
+    })
+</script> {%endblock%}

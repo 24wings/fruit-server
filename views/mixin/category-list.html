@@ -1,0 +1,15 @@
+<div class="col-md-2 col-sm-3 hidden-xs">
+    {%for cate in categorys%}
+    <div class="product-category">
+        <a class="tab {% if category._id+'' ==cate._id+'' %} selected {%endif%}" href="/category/{{cate._id+''}}" title="圣诞精选">{{cate.name}}</a>
+        {% if category._id+'' ==cate._id+'' %} {%for product in products%}
+        <div class="product-set">
+            <a class="secondary-tab" href="/product/{{product._id+''}}" title="{{product.name}}">{{product.name}}</a>
+        </div>
+        {%endfor%} {%endif%}
+
+    </div>
+    {%endfor%}
+
+
+</div>

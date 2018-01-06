@@ -1,0 +1,62 @@
+{%extends './layout.html' %}
+{%block content%}
+
+<div class="container" style="margin-top:60px">
+<h2>今日订单</h2>
+
+
+<table  class="table table-bordered">
+<thead>
+    <th>订单时间</th> <th>订单产品</th> <th>订单数量</th> <th>订单状态</th> <th>操作</th>
+
+</thead> 
+<tbody>
+
+{%for record in todayRecords%}
+<tr>
+<td>{{record.createDt.toLocaleString()}}</td>
+<td><a href="/product/{{record.product._id+''}}"> {{record.product.name}}</a></td>
+<td> {{record.num}} </td>
+<td>{{record.state?record.state:0}}</td>
+<td>{%if record.state=='未确认' %} <a class="btn btn-success" href="/user/{{user._id+''}}/orderConfirm/{{record._id+''}}">确认</a> {%endif%}
+    
+    {%if record.state!='已确认'%}
+    <a href="/user/{{user._id+''}}/deleteOrder/{{record._id+''}}" class="btn btn-danger">  删除</a>
+    {%endif%}
+    
+</td>
+    
+</tr>
+{%endfor%}
+</tbody>
+</table>
+
+
+<h4>以往订单</h4>
+<table  class="table table-bordered">
+    <thead>
+        <th>订单时间</th> <th>订单产品</th> <th>订单数量</th> <th>订单状态</th> <th>操作</th>
+    
+    </thead> 
+    <tbody>
+    
+    {%for record in oldRecords%}
+    <tr>
+    <td>{{record.createDt.toLocaleString()}}</td>
+    <td><a href="/product/{{record.product._id+''}}"> {{record.product.name}}</a></td>
+    <td> {{record.num}} </td>
+    <td>{{record.state?record.state:0}}</td>
+    <td>{%if record.state=='未确认' %} <a class="btn btn-success" href="/user/{{user._id+''}}/orderConfirm/{{record._id+''}}">确认</a> {%endif%}
+        
+        {%if record.state!='已确认'%}
+        <a href="/user/{{user._id+''}}/deleteOrder/{{record._id+''}}" class="btn btn-danger">  删除</a>
+        {%endif%}
+        
+    </td>
+        
+    </tr>
+    {%endfor%}
+    </tbody>
+    </table>
+</div>
+{%endblock%}

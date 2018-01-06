@@ -1,0 +1,181 @@
+{%extends './layout.html'%}
+
+{%block content%}
+<div class="container" style="margin-top:100px">
+
+<a class="btn btn-primary" >每日订单</a>  <a class="btn btn-primary" onclick="$('#userListPanel').show();loadUsers()">用户订单</a>
+
+<input type="date" onchange="showOrders(this.value)" id="selectedDt"> 
+<form id="getExcelForm" action="/toExcel" method="post" >
+<input id="rows" name="rows" hidden> 
+ <button class="btn btn-success" type="submit">下载execl文件</button>
+ </form>
+</div>
+
+
+
+<table id="records" class="table table-bordered">
+    <thead>
+    <th>订单时间</th>
+    <th>订单发起人</th>
+    <th>订单货品</th>
+    <th>订单数量</th>
+    <th>订单状态</th>
+</thead>
+<tbody>
+
+    <tr></tr>
+</tbody>
+
+</table>
+
+
+<div class="panel panel-default" id="userListPanel">
+    <div class="panel-body">
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button onclick="closeUserListPanel()" type="button" class="close" ><span aria-hidden="true">&times;</span></button>
+            <strong></strong>关闭用户列表
+          </div>
+ 
+<table id="users" class="table table-bordered">
+<thead>
+<th>用户名</th> 
+</thead>
+<tbody>
+
+</tbody>
+</table>
+</div>
+</div>
+<script>
+function loadUsers(){
+    $.ajax('/getUsers',{
+        success:function(rtn){
+            $('#users tbody tr').remove();
+            if(rtn.ok){
+                let users=rtn.data;
+                users.forEach(user=>{
+                   $('#users tbody') .append($(`<tr><td>${user.nickname}</td> <td> <a class="btn btn-success" onclick="loadUserRecord('${user._id}')">查看订单</a></td></tr>`))
+                })
+            }
+        }
+    })
+}
+function loadUserRecord(userId){
+    localStorage.setItem('userId',userId);
+
+    let selectedDt =new Date($('#selectedDt').val());
+        let time=false;
+    if(typeof selectDt !='string'){
+    time= new Date(selectedDt.getFullYear(),selectedDt.getMonth(),selectedDt.getDate(),0,0).getTime();
+    }
+    console.log(selectedDt.toLocaleString())
+
+    $.ajax('/queryUserRecord?userId='+userId+(time?'&time='+time:''),{
+        success:function(rtn){
+            if(rtn.ok){
+                loadRecords(rtn.data);
+            }
+        }
+    })
+
+}
+
+function getLocalUserId(){
+   return localStorage.getItem('userId');
+}
+
+function showOrders(dt){
+    let userId =getLocalUserId();
+    if(userId){
+        loadUserRecord(userId)
+    }else{
+  
+        $.ajax('/queryRecord',{
+            method:'POST',
+            data:{time:dt},
+            success:function(rtn){
+            if(rtn.ok){
+             
+                let records =rtn.data?rtn.data:[];
+                  loadRecords(records);
+ 
+            }
+                
+            }
+        });
+    }
+}
+
+function loadRecords(records){
+       $('#records tbody tr').remove();
+   let rows =records.map(record=>{ 
+        return [new Date(record.createDt).toLocaleString(),record.orderUser.nickname,record.product.name,record.num+'',record.state]
+    });
+    /** rows
+     * 
+     * row
+     * [time,niclname,productname,num,state]
+     * 
+     */
+    let groups =[];
+    rows.forEach(row=>{
+        let group = groups.find(group=>group[2]==row[2]);
+        if(group){
+           group[3]= parseInt(group[3]) +parseInt(row[3]) +'';
+        }else{
+            groups.push( row);
+        }
+    });
+    console.log('groups:',groups);
+    console.log(rows);
+    $('#rows').val(JSON.stringify(rows));
+    
+                records.forEach(record=>{
+                    $('#records tbody').append(`<tr> 
+                        <td>${ new Date(record.createDt).toLocaleString()} </td>
+                        <td>${record.orderUser.nickname}</td>
+                        <td>${record.product.name}</td>
+                        <td>${record.num}</td>
+                        <td>${record.state}</td>
+</tr>   
+
+
+                        ` )
+                });
+                $('#records tbody').append(`
+            <tr><td col="5">统计分析</></tr>
+                <tr> <td>产品</td> <td>数量</td>  </tr>
+                
+            `);
+            groups.forEach(group=>{
+                $('#records tbody').append(` <tr> <td>${group[2]}</td> <td>${group[3]}</td></tr> `)
+            })
+
+}
+
+function downloadExcel(){
+    let _headers =['订单时间','订单发起人','订单货品','订单数量','订单状态'];
+    let rows =$('#records tbody tr').toArray().map(tr=>{
+        let $tr=$(tr);
+        return [$tr.find('td').toArray().map(td=>$(td).text) ]
+    });
+    $.ajax('/toExcel',{
+        method:'POST',
+        data:{
+            _headers,
+            rows
+        },
+        success:function(rtn){
+            window.location.href=rtn;
+        }    })
+}
+function closeUserListPanel(){
+    localStorage.clear();
+        $('#userListPanel').hide();
+}
+
+
+
+</script>
+{%endblock%}

@@ -1,0 +1,116 @@
+{%extends './layout.html' %} {%block content%}
+<div class='hidden-xs' style='height: 50px;'></div>
+{{JSON.stringify(recommandProducts)}} {{JSON.stringify(recommandCategorys)}}
+<div class='visible-xs' style='height: 100px;'></div>
+<div data='2015/08/05' id='activity-20150805-start'></div>
+<div data='2015/08/22' id='activity-20150805-end'></div>
+<div class='swiper-container pc-slideshows-swiper' id='front-page-carousel' style="    margin-top: 60px;">
+  <div class='swiper-wrapper'>
+    {%for product in recommandProducts%}
+    <div class='swiper-slide flex-center'>
+      <a href='/product/{{product.product._id+' '}}'>
+
+        {{product.images[0]?product.images[0].image.url :' ' }}
+        <img src='{{product.images[0]?product.images[0].image.url:' ' }}' class="img-response">
+      </a>
+    </div>
+    {%endfor%}
+
+
+  </div>
+  <div class='swiper-pagination pc-swiper-pagination'></div>
+</div>
+<div class='swiper-container mobile-slideshows-swiper' id='mobile-front-page-carousel'>
+  <div class='swiper-wrapper'>
+    {% for product in recommandProducts %}
+    <div class='swiper-slide'>
+      <a href='/product/{{product.product._id+' '}}'>
+        {{product.images[0]?product.images[0].image.url :' ' }}
+        <img src='{{product.images[0]?product.images[0].url :' ' }}'>
+      </a>
+    </div>
+    {%endfor%}
+  </div>
+  <div class='swiper-pagination mobile-swiper-pagination'></div>
+</div>
+<div class='container marketing center'>
+  <div class='row'>
+    <div class='front-page-header'>
+      <span class='caret caret-right'></span>
+      <b>
+        <a class='pantry-green-title'>常规产品列表</a>
+      </b>
+    </div>
+  </div>
+  <div class='row'>
+    {%for product in recommandProducts%}
+    <div class='col-md-15 col-sm-15 col-xs-6'>
+
+      <div>
+        <a class='has-img-icon' href='/product/{{product.product._id+' '}}'>
+          <img alt='{{product.product.name}}' class='img-responsive' src='{{product.images[0]?product.images[0].url:' '}}'>
+          <div class='img-icon new_img'>&nbsp;</div>
+
+        </a>
+        <span class='size-and-price'>
+          <!-- 类别: {{product.category.name}} -->
+        </span>
+      </div>
+      <a class='product-category-link' href='/product/{{product.product._id+' '}}'>
+        {{product.product.name}}
+      </a>
+    </div>
+    {%endfor%}
+
+  </div>
+  <div class='container marketing center'>
+    <div class='row'>
+      <div class='front-page-header'>
+        <span class='caret caret-right'></span>
+        <b class='pantry-green-title'>新品推荐</b>
+      </div>
+    </div>
+    <div class='row'>
+      <!-- {{JSON.stringify(recommandCategorys)}} -->
+      {%for category in recommandCategorys %}
+
+      <div class='col-md-3 col-sm-3 col-xs-6'>
+        <div class='front-page-product-set-image-container'>
+          <a class='has-img-icon' href="/category/{{ category.category._id+'' }}">
+            <img class='img-responsive' src="{{category.category.image}}">
+
+
+
+            <div class='img-icon new_img'>&nbsp; </div>
+
+          </a>
+          <form accept-charset="UTF-8" action="/shopping-cart" class="front-page-cart-form hidden-xs" data-remote="true" method="post">
+            <div style="display:none">
+              <input name="utf8" type="hidden" value="&#x2713;" />
+            </div>
+            <input name='authenticity_token' type='hidden' value='38nor2qECU1f9Cx2ebxzXIv9OS2TTO23t8hm+Yo8bRw='>
+            <input name='product_id' type='hidden' value='1010'>
+            <input class='shopping-cart-button' type='submit' value=''>
+          </form>
+
+        </div>
+        <div class='chinese-name'>
+          <a href='/cities/beijing/categories/christmas-specials/products/Christmas-cabin-cake'>
+            <h2 class='product-set-link'>{{category.category.name}}</h2>
+          </a>
+          <span class='size-and-price'>
+
+          </span>
+        </div>
+      </div>
+      {%endfor%}
+
+
+
+    </div>
+  </div>
+  <script>
+    $(document).ready(function () {
+      Pantrysbest.SwiperPantry.init();
+    });
+  </script> {%endblock%}
